@@ -28,18 +28,10 @@ weatherDiv.innerHTML =
 
 }
 
-//function that makes request to api - default GET request
+// function that makes request to api - default GET request
 async function getFromApi(userInput){
   const apiResponse = await fetch(`https://api.weatherapi.com/v1/current.json?key=d01e96a14a9449a7a6f152442231805&q=${userInput}&aqi=no`);
 const data = await apiResponse.json();
 return data;
 }
-
-//attempting bob's bugers api
-//  async function getFromApi(userInput){
-//   const apiResponse = await fetch(`https://bobsburgers-api.herokuapp.com/characters/?${userInput}`);
-// const data = await apiResponse.json();
-// return data;
-//  }
-
 
