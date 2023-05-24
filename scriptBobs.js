@@ -1,24 +1,15 @@
 //attempting bob's bugers api
 
+console.log("burgers are go!")
 
- // 1 - function to generate random number
- function getRandomNum(){
-  const randomNum = Math.floor((Math.random * 506) + 1 );
- return randomNum;
-}
+const bobsDiv = document.getElementById("bobsDiv")
 
-getRandomNum();
-
-//grab button
-const button = document.getElementById("form");
-//add event listener
-form.addEventListener('submit', function (event){
-event.preventDefault();
-
-displayData()
-form.reset();
-});
-
+// function that makes request to api 
+async function getFromApi(randomNum){
+  const apiResponse = await fetch(`https://bobsburgers-api.herokuapp.com/characters/${randomNum}`);
+const data = await apiResponse.json();
+return data;
+ }
 
 
 //function to display populate the div with html from data
@@ -27,21 +18,29 @@ form.reset();
 //access data and put in html
 async function displayData(randomNum){
   const data = await getFromApi(randomNum);
-  console.log(data);
+  // debugger;
  bobsDiv.innerHTML =
-  `<h1>${data.character.name}</h1>`
-  `<img src=${data.character.image}>`
+  ` <img src="${data.image}">
+  <p id="cardName">${data.name}</p>
+ `
   
   }
 
-// function that makes request to api 
-async function getFromApi(randomNum){
-  const apiResponse = await fetch(`https://bobsburgers-api.herokuapp.com/characters/${getRandomNum()}`);
-  console.log(randomNum);
-const data = await apiResponse.json();
-return data;
- }
 
+ // 1 - function to generate random number
+ function getRandomNum(){
+  const randomNum = Math.floor((Math.random() * 506) + 1 );
+  displayData(randomNum);
+  console.log(`random number: ${randomNum}`);
+}
 
+//grab button
+const button = document.getElementById("form");
+//add event listener
+form.addEventListener('submit', function (event){
+event.preventDefault();
+getRandomNum();
+form.reset();
+});
 
 
