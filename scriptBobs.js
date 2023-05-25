@@ -7,7 +7,9 @@ const bobsDiv = document.getElementById("bobsDiv")
 // function that makes request to api 
 async function getFromApi(randomNum){
   const apiResponse = await fetch(`https://bobsburgers-api.herokuapp.com/characters/${randomNum}`);
+
 const data = await apiResponse.json();
+// console.log(data);
 return data;
  }
 
@@ -19,11 +21,12 @@ return data;
 async function displayData(randomNum){
   const data = await getFromApi(randomNum);
   // debugger;
+  
+
  bobsDiv.innerHTML =
   ` <img src="${data.image}">
   <p id="cardName">${data.name}</p>
  `
-  
   }
 
 
@@ -31,7 +34,7 @@ async function displayData(randomNum){
  function getRandomNum(){
   const randomNum = Math.floor((Math.random() * 506) + 1 );
   displayData(randomNum);
-  console.log(`random number: ${randomNum}`);
+  // console.log(`random number: ${randomNum}`);
 }
 
 //grab button
